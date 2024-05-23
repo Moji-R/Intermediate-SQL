@@ -1,0 +1,70 @@
+--Intermediate SQL(May 21,2024)
+--Practice time
+--Qtn 1
+select sum(AmountinUSD)TotalAmount from indian_startup_funding where CityLocation='Bengaluru'
+
+--Qtn 2 
+select * from indian_startup_funding order by StartupName desc
+
+--Qtn 3
+select sum(AmountinUSD)TotalAmount from indian_startup_funding where CityLocation='Bengaluru' and AmountinUSD>380000
+
+--Qtn 4
+select CityLocation from indian_startup_funding where AmountinUSD>380000
+
+--Qtn 5
+select distinct CityLocation from indian_startup_funding where AmountinUSD>380000
+
+--Qtn 6
+select distinct StartupName from indian_startup_funding where AmountinUSD<80000
+
+--Qtn 7
+select distinct StartupName from indian_startup_funding where AmountinUSD<80000 order by StartupName desc
+
+--Qtn 8
+
+--update indian_startup_funding
+--set AmountinUSD=null where AmountinUSD in ('undisclosed','unknown','Undisclosed')
+select CityLocation from indian_startup_funding where AmountinUSD=(select max(AmountinUSD) from indian_startup_funding)
+
+--Qtn 9
+select IndustryVertical,sum(AmountinUSD)TotalAmount from indian_startup_funding
+group by IndustryVertical
+
+--Qtn 10
+select IndustryVertical,sum(AmountinUSD)TotalAmount from indian_startup_funding
+where IndustryVertical like 'A%'
+group by IndustryVertical
+
+--Qtn 11
+select IndustryVertical,sum(AmountinUSD)TotalAmount from indian_startup_funding
+where IndustryVertical like 'A%'
+group by IndustryVertical
+order by TotalAmount desc
+
+--Qtn 12
+select count(*)StartUps_in_Education from indian_startup_funding where IndustryVertical='Education'
+
+--Qtn 13
+select count(*)StartUps_in_ECom from indian_startup_funding where IndustryVertical='E-Commerce'
+
+--Qtn 14
+select count(*)StartUps_in_ECom_Blore from indian_startup_funding where IndustryVertical='E-Commerce' and CityLocation='Bengaluru'
+
+--Qtn 15
+select IndustryVertical,sum(AmountinUSD)TotalAmount from indian_startup_funding
+group by IndustryVertical
+
+--Qtn 16
+--using groupby
+select IndustryVertical,sum(AmountinUSD)Total_fund,avg(AmountinUSD)Avg_Fund from indian_startup_funding
+group by IndustryVertical
+
+--using subqueries
+
+
+--Qtn 17
+select min(AmountinUSD)Minamount from indian_startup_funding where StartupName='Uniphore'
+
+--Qtn 18
+select distinct CityLocation,length(CityLocation)Length_of_city from indian_startup_funding
